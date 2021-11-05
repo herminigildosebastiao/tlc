@@ -11,14 +11,6 @@ class SiteController extends Controller
         return view("site.home.index");
     }
 
-    public function shop(){
-        return view("site.shop.index");
-    }
-
-    public function product($id){
-        return view("site.shop.product", compact("id"));
-    }
-
     public function about(){
         return view("site.about.index");
     }
@@ -42,4 +34,5 @@ class SiteController extends Controller
     public function contact(){
         return view("site.contact.index");
     }
+
 }

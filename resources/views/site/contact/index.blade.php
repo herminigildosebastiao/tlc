@@ -1,4 +1,4 @@
-@extends('site.template')
+@extends('template')
 
 @section('style')
 <style type="text/css">

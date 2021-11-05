@@ -112,28 +112,28 @@
                                 <div class="top-cart-items">
                                     <div class="top-cart-item clearfix">
                                         <div class="top-cart-item-image">
-                                            <a href="#"><img src="assets/images/shop/img-11.jpg" alt="Blue Round-Neck Tshirt"></a>
+                                            <a href="#"><img src="{{url("assets/images/shop/img-11.jpg")}}" alt="Blue Round-Neck Tshirt"></a>
                                         </div>
                                         <div class="top-cart-item-des">
-                                            <a href="#">Blue Round-Neck Tshirt</a>
-                                            <span class="top-cart-item-price">$19.99</span>
-                                            <span class="top-cart-item-quantity">x 2</span>
+                                            <a href="#">Painel Solar 300W</a>
+                                            <span class="top-cart-item-price">MZN 16 000.00</span>
+                                            <span class="top-cart-item-quantity">x 1</span>
                                         </div>
                                     </div>
                                     <div class="top-cart-item clearfix">
                                         <div class="top-cart-item-image">
-                                            <a href="#"><img src="assets/images/shop/img-6.jpg" alt="Light Blue Denim Dress"></a>
+                                            <a href="#"><img src="assets/images/shop/img-6.jpg" alt="Contactor CJX2-1210"></a>
                                         </div>
                                         <div class="top-cart-item-des">
-                                            <a href="#">Light Blue Denim Dress</a>
-                                            <span class="top-cart-item-price">$24.99</span>
-                                            <span class="top-cart-item-quantity">x 3</span>
+                                            <a href="#">Contactor CJX2-1210</a>
+                                            <span class="top-cart-item-price">MZN 2 500.00</span>
+                                            <span class="top-cart-item-quantity">x 1</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price">MZN 114.95</span>
-                                    <a href="cart.html" class="theme-btn">Ver carinho de compra</a>
+                                    <span class="fleft top-checkout-price">MZN 18 500.00</span>
+                                    <a href="{{route("cart")}}" class="theme-btn">Ver carinho de compra</a>
                                 </div>
                             </div>
                         </div>
@@ -225,6 +225,8 @@
 
     <!-- Custom script for this template -->
     <script src="{{url("assets/js/script.js")}}"></script>
+
+    @yield('scripts')
 </body>
 
 

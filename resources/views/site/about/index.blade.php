@@ -1,4 +1,4 @@
-@extends('site.template')
+@extends('template')
 
 @section('content')
     <!-- start page-title -->
