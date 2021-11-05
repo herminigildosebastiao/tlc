@@ -7,5 +7,39 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    //
+    public function index(){
+        return view("site.home.index");
+    }
+
+    public function shop(){
+        return view("site.shop.index");
+    }
+
+    public function product($id){
+        return view("site.shop.product", compact("id"));
+    }
+
+    public function about(){
+        return view("site.about.index");
+    }
+
+    public function portfolio(){
+        return view("site.portfolio.index");
+    }
+
+    public function portDetails($id){
+        return view("site.portfolio.portfolio", compact("id"));
+    }
+
+    public function blog(){
+        return view("site.blog.index");
+    }
+
+    public function blogDetails($id){
+        return view("site.blog.blog", compact("id"));
+    }
+
+    public function contact(){
+        return view("site.contact.index");
+    }
 }

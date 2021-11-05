@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\site\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Rotas para o website generico
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/", [SiteController::class, 'index'])->name("home");
+Route::get("home", [SiteController::class, 'index'])->name("home");
+Route::get("shop", [SiteController::class, 'shop'])->name("shop");
+Route::get("shop/product/{id}", [SiteController::class, 'product'])->name("product");
+Route::get("about", [SiteController::class, 'about'])->name("about");
+Route::get("portfolio", [SiteController::class, 'portfolio'])->name("portfolio");
+Route::get("portDetails/{id}", [SiteController::class, 'portDetails'])->name("portDetails");
+Route::get("blog", [SiteController::class, 'blog'])->name("blog");
+Route::get("blogDetails/{id}", [SiteController::class, 'blogDetails'])->name("blogDetails");
+Route::get("contact", [SiteController::class, 'contact'])->name("contact");
