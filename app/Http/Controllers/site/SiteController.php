@@ -4,9 +4,19 @@ namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SiteController extends Controller
 {
+    public function __construct()
+    {
+        return Session::put([
+            "idProdutos" => [
+                
+            ]
+        ]);
+    }
+
     public function index(){
         return view("site.home.index");
     }

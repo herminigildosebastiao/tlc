@@ -4,9 +4,14 @@ namespace App\Http\Controllers\shop;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        
+    }
     public function shop(){
         return view("shop.index");
     }
@@ -15,11 +20,16 @@ class ShopController extends Controller
         return view("shop.product", compact("id"));
     }
 
+    public function addCart($id){
+        
+
+    }
+
     public function cart(){
-        return view("shop.cart");
+        
     }
 
     public function payment(){
-        return view("shop.payment");
+        
     }
 }

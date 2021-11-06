@@ -94,7 +94,7 @@
                         <button class="close-navbar"><i class="fa fa-close"></i></button>
                         <ul class="nav navbar-nav">
                             <li><a href="{{route("home")}}">Pagina inicial</a></li>
-                            <li><a href="{{route("shop")}}">Loja</a></li>
+                            {{--<li><a href="{{route("shop")}}">Loja</a></li>--}}
                             <li><a href="{{route("about")}}">Sobre</a></li>
                             <li><a href="{{route("portfolio")}}">Portifolio</a></li>
 							<li><a href="{{route("blog")}}">Blog</a></li>
@@ -103,7 +103,7 @@
                     </div><!-- end of nav-collapse -->
                     <div class="cart-contact">
                         <div class="mini-cart">
-                            <button class="cart-toggle-btn"> <i class="fi flaticon-shopping-cart"></i> Meu carinho (2) </button>
+                            <button class="cart-toggle-btn" disabled> <i class="fi flaticon-shopping-cart"></i> Meu carinho (0) </button>
 
                             <div class="top-cart-content">
                                 <div class="top-cart-title">
@@ -205,19 +205,7 @@
     ================================================== -->
     <script src="{{url("assets/js/jquery.min.js")}}"></script>
     <script src="{{url("assets/js/bootstrap.min.js")}}"></script>
-    {{--
-        Scipt for Shop
-        --}}
-
-        <script>
-            $(document).ready(function(){
-                $("button.addCard").on("click", function(e){
-                    e.preventDefault();
-                    var idProduct = $(this).val();
-                    alert(`id do produto ${idProduct}`);
-                });
-            });
-        </script>
+    <script src="{{url("assets/js/cart.js")}}"></script>
 
     <!-- Plugins for this template -->
     <script src="{{url("assets/js/jquery-plugin-collection.js")}}"></script>

@@ -28,6 +28,7 @@
         <div class="container">
             <div class="row">
                     <div class="col-12">
+                        @if ($itens)
                         <form action="#">
                             <div class="table-content table-responsive">
                                 <table class="table">
@@ -40,43 +41,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="li-product-thumbnail">
-                                                <img src="assets/images/shop/img-9.jpg" alt="Li's Product Image" style="width: 70px;">
-                                            </td>
-                                            <td class="li-product-name">
-                                                <a href="#">Estabilizador de tensão AG15H</a>
-                                            </td>
-                                            <td class="li-product-price">
-                                                <span class="amount">MZN 10 300.00</span>
-                                            </td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input type="hidden" name="" value="222">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="li-product-thumbnail"><a href="#"><img src="assets/images/shop/img-14.jpg" alt="Li's Product Image" style="width: 70px;"></a></td>
-                                            <td class="li-product-name">
-                                                <a href="#">Motor AC trifásico 2.2kW 3hp</a>
-                                            </td>
-                                            <td class="li-product-price">
-                                                <span class="amount">MZN 42 750.00</span>
-                                            </td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($itens as $item)
+                                            <tr>
+                                                <td class="li-product-thumbnail">
+                                                    <img src="assets/images/shop/img-9.jpg" alt="Li's Product Image" style="width: 70px;">
+                                                </td>
+                                                <td class="li-product-name">
+                                                    <a href="#">Estabilizador de tensão AG15H</a>
+                                                </td>
+                                                <td class="li-product-price">
+                                                    <span class="amount">MZN 10 300.00</span>
+                                                </td>
+                                                <td class="quantity">
+                                                    <label>Quantity</label>
+                                                    <div class="cart-plus-minus">
+                                                        <input type="hidden" name="" value="222">
+                                                        <input class="cart-plus-minus-box" value="1" type="text">
+                                                        <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                                        <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -90,6 +76,9 @@
                                 </div>
                             </div>
                         </form>
+                        @else
+                        <h3>Sem itens no seu carinho!</h3>
+                        @endif
                     </div>
                 </div>
         </div> <!-- end container -->
