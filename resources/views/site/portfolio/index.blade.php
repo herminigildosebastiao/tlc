@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         @empty
-                            <h3 style="color: #fff;">Opss nenhuma imagem disponivel!!!</h3>
+                            <h3 style="color: #00000075;">Opss nenhuma imagem disponivel!!!</h3>
                         @endforelse
                     </div>
                 </div>
