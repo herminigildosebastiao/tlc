@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,11 +41,6 @@ class UserController extends Controller
     
     public function edit(User $user)
     {
-        /*$user = DB::table('users')
-            ->orderBy('id', 'desc')
-            ->get();*/
-
-        /*$user = ["id" => 25, "name" => "DennyLson", "apelido" => "Sebastian", "email" => "admin@admin.com", "biografia" => "Esta e a minha Biografia", "nascimento" => "1998-11-23", "telefone" => "845255563"];*/
         return view("user.perfil", compact("user"));
     }
 
@@ -63,6 +60,29 @@ class UserController extends Controller
         }
     }
 
+    public function password(Request $request, User $user){
+        $passForm = $request->all();
+        if ($passForm['novasenha'] != $passForm['confsenha']) {
+            return redirect()->back()->withErrors(['Prencha os campos de senha corretamente!']);
+        }else{
+            $dataForm = $request->all();
+            $hashedPassword = Auth::user()->password;
+            if (Hash::check($dataForm['senha'], $hashedPassword)) {
+                $update = Auth::user()->update([
+                    'password' => Hash::make($dataForm['novasenha'])
+                ]);
+
+                if ($update) {
+                    return redirect()->back()->withErrors(['Senha alterada! com sucesso!!!']);
+                }else{
+                    return redirect()->back()->withErrors(['falha aou atualizar!!!']);
+                }
+
+            }else{
+                return redirect()->back()->withErrors(['Falha ao alterar senha invalida!!!']);
+            }
+        }
+    }
     
     public function destroy(User $user)
     {

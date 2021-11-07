@@ -93,7 +93,7 @@
                         </div>
                     </form>
                     <hr>
-                    <form method="post" class="row" id="formSenha" action="{{--route('senha.update', $user['id'])--}}">
+                    <form method="post" class="row" id="formSenha" action="{{route('password', $user['id'])}}">
                       {!! method_field('PUT') !!}
                       {!! csrf_field() !!}
                         <div class="col-12">
@@ -103,7 +103,7 @@
                         <div class="col-4">
                           <div class="form-group">
                             <label for="">Senha</label>
-                            <input class="form-control" type="password" name="senha" id="" form="formSenha" required minlength="6">
+                            <input class="form-control" type="password" name="senha" id="" form="formSenha" required minlength="3">
                           </div>
                         </div>
                         <div class="col-4">
