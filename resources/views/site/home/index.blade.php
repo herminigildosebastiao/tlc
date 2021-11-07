@@ -224,39 +224,21 @@
             <div class="row">
                 <div class="col col-xs-12">
                     <div class="projects-grid-view">
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="{{url("assets/images/portifolio/albufeira.jpg")}}" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Albufeira de Chipembe incrementa a agricultura</h3></a>
-                                    <div class="tags">Cabo Delgado</div>
+                        @forelse($galerias as $galeria)
+                            <div class="grid">
+                                <div class="project-img">
+                                    <img src="{{url("storage/$galeria->foto")}}" alt="{{ $galeria->titulo }}" title="{{ $galeria->titulo }}">
+                                </div>
+                                <div class="project-info">
+                                    <div class="inner-info">
+                                        <a href="{{ url("portDetails/$galeria->id") }}"><h4 style="color: #fff;">{{ $galeria->titulo }}</h4></a>
+                                        <div class="tags">{{ $galeria->local }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="{{url("assets/images/portifolio/chuvas.jpg")}}" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>PREPARANDO-SE PARA A ÉPOCA CHUVOSA: Município limpa valas de drenagem</h3></a>
-                                    <div class="tags">Sofala</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="{{url("assets/images/portifolio/estrada.jpg")}}" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Estrada que liga Macomia e Muidumbe reabre dentro de dias</h3></a>
-                                    <div class="tags">Cabo Delgado</div>
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                            <h3 style="color: #fff;">Opss nenhuma imagem disponivel!!!</h3>
+                        @endforelse
                     </div>
                 </div>
                 <div class="col-12 text-center">
@@ -366,57 +348,43 @@
             <div class="row">
                 <div class="col col-xs-12">
                     <div class="news-grids">
-                        <div class="grid">
-                            <div class="entry-media">
-                                <img src="{{url("assets/images/blog/energia.jpg")}}" alt>
-                            </div>
-                            <div class="entry-details">
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> 02/11/2021</li>
-                                        <li><i class="fa fa-user"></i><a href="#"> DennyLson Sebastiao</a></li>
-                                    </ul>
+                        @forelse($blogs as $blog)
+                            <div class="grid">
+                                <div class="entry-media">
+                                    <img src="{{url("storage/$blog->foto")}}" alt>
                                 </div>
-                                <div class="entry-body" style="text-align: justify;">
-                                    <h3><a href="#">Energia eléctrica deve impulsionar desenvolvimento</a></h3>
-                                    <p>O PRESIDENTE da República, Filipe Nyusi, instou, semana passada, as populações dos postos administrativos de Alto-Changane e Changanine.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="entry-media">
-                                <img src="{{url("assets/images/blog/desastre.jpg")}}" alt>
-                            </div>
-                            <div class="entry-details">
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> 02/11/2021</li>
-                                        <li><i class="fa fa-user"></i><a href="#"> DennyLson Sebastiao</a></li>
-                                    </ul>
-                                </div>
-                                <div class="entry-body" style="text-align: justify;">
-                                    <h3><a href="#">Mais de 300 mil pessoas em risco de desastres naturais</a></h3>
-                                    <p>MAIS de 300 mil pessoas, o correspondente a 24 mil famílias, correm o risco de ser assoladas por chuvas normais e acima de anormais.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="entry-media">
-                                <img src="{{url("assets/images/blog/albufeira.jpg")}}" alt>
-                            </div>
-                            <div class="entry-details">
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> 02/11/2021</li>
-                                        <li><i class="fa fa-user"></i><a href="#"> DennyLson Sebastiao</a></li>
-                                    </ul>
-                                </div>
-                                <div class="entry-body" style="text-align: justify;">
-                                    <h3><a href="#">Albufeira de Chipembe incrementa a agricultura</a></h3>
-                                    <p>A ALBUFEIRA de Chipembe, localizada no posto administrativo de Mavala, em Cabo Delgado, não está a ser aproveitada na sua plenitude.</p>
+                                <div class="entry-details">
+                                    <div class="entry-meta">
+                                        <ul>
+                                            <li><i class="fa fa-calendar"></i> {{ $blog->updated_at }}</li>
+                                            <li><i class="fa fa-user"></i><a href="#"> {{ $blog->autor }}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="entry-body" style="text-align: justify;">
+                                        <h3>
+                                            @php
+                                              $len=strlen($blog->titulo);
+                                              if ($len>30) {
+                                                $blog->titulo = substr($blog->titulo,0,49).'...';
+                                              }
+                                            @endphp
+                                            <a href="{{ url("blogDetails/$blog->id") }}">{{ $blog->titulo }}</a>
+                                        </h3>
+                                        <p>
+                                            @php
+                                              $len=strlen($blog->descricao);
+                                              if ($len>70) {
+                                                $blog->descricao = substr($blog->descricao,0,110).'...';
+                                              }
+                                            @endphp
+                                            {{$blog->descricao}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @empty
+                            <h3 style="color: #00000075;">Opss nenhuma noticia disponivel!!!</h3>
+                        @endforelse
                     </div>
                 </div>
             </div>

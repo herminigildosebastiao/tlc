@@ -10,9 +10,16 @@
     <div class="card-content">
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-              <a href="{{url('painel/noticia')}}">
+              <a href="{{ url('dashboard/blog') }}">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">{{$qntno}}<span class="float-right"><i class="fa fa-newspaper-o"></i></span></h5>
+
+                    @if($qntno < 10)
+                      <h5 class="text-white mb-0">0{{$qntno}}<span class="float-right"><i class="fa fa-newspaper-o"></i></span>
+                    @else
+                      <h5 class="text-white mb-0">{{$qntno}}<span class="float-right"><i class="fa fa-newspaper-o"></i></span>
+                    @endif
+
+                  </h5>
                     <div class="progress my-3" style="height:10px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
@@ -21,9 +28,13 @@
               </a>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-              <a href="{{url('painel/galerias')}}">
+              <a href="{{ url('dashboard/portfolio') }}">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">{{$qntga}}<span class="float-right"><i class="fa fa-image"></i></span></h5>
+                  @if($qntno < 10)
+                    <h5 class="text-white mb-0">0{{$qntga}}<span class="float-right"><i class="fa fa-newspaper-o"></i></span>
+                  @else
+                    <h5 class="text-white mb-0">{{$qntga}}<span class="float-right"><i class="fa fa-newspaper-o"></i></span>
+                  @endif
                     <div class="progress my-3" style="height:10px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
@@ -90,7 +101,7 @@
             @endif
           </div>
           <hr>
-          <form action="{{--route('galerias.store')--}}" method="post" id="formGaleria" enctype="multipart/form-data">
+          <form action="{{route('portfolio.store')}}" method="post" id="formGaleria" enctype="multipart/form-data">
             {!! csrf_field() !!}
             <div class="row my-2">
               <div class="col-7">

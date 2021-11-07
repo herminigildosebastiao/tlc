@@ -26,19 +26,17 @@
                 <div class="col col-lg-7 col-md-8 blog-single-content">
                     <div class="post">
                         <div class="media">
-                            <img src="{{url("assets/images/blog/chuvas.jpg")}}" alt class="img img-responsive">
+                            <img src="{{ url("storage") }}/{{ $blog[0]->foto }}" alt="{{ $blog[0]->titulo }}" title="{{ $blog[0]->titulo }}" class="img img-responsive">
                         </div>
                         <div class="post-title-meta">
-                            <h2 style="text-align: justify;">PREPARANDO-SE PARA A ÉPOCA CHUVOSA: Município limpa valas de drenagem com id {{$id}}</h2>
+                            <h2 style=""> {{ $blog[0]->titulo }} </h2>
                             <ul>
-                                <li><a href="#">Publicado por: DennyLson  Sebastiao</a></li>
-                                <li><a href="#">22/11/2021</a></li>
+                                <li><a href="#">Publicado por: {{ $blog[0]->autor }}</a></li>
+                                <li><a href="#">{{ $blog[0]->updated_at }}</a></li>
                             </ul>
                         </div>
                         <div class="post-body">
-                            <p>O PROCESSO de manutenção das valas de drenagem acaba de ser activado na cidade da Beira, com vista a permitir maior vazão das águas pluviais nesta época chuvosa e ciclónica, que decorre de Outubro a Março.</p>
-                            <p>Basicamente, a edilidade pretende reduzir eventuais impactos multiplicadores das inundações que, ciclicamente, fustigam a urbe, construída abaixo do nível médio das águas do mar.</p>
-                            <p>O Conselho Municipal da Beira, através dos Serviços Autónomos de Saneamento (SASB), também está a proceder à abertura das valas de drenagem em todos os 26 bairros periféricos.</p>
+                            <p>{{ $blog[0]->descricao }}</p>
                         </div>
                     </div> <!-- end post -->
                 </div> <!-- end blog-content -->
@@ -47,33 +45,19 @@
                     <div class="widget recent-post-widget">
                         <h3>Posts Recentes</h3>
                         <ul>
-                            <li>
-                                <div class="post-pic">
-                                    <img src="{{url("assets/images/blog/desastre.jpg")}}" alt>
-                                </div>
-                                <div class="details">
-                                    <h4><a href="#">Mais de 300 mil pessoas em risco de desastres naturais</a></h4>
-                                    <span>02/11/2021</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="post-pic">
-                                    <img src="{{url("assets/images/blog/chuvas.jpg")}}" alt>
-                                </div>
-                                <div class="details">
-                                    <h4><a href="#">PREPARANDO-SE PARA A ÉPOCA CHUVOSA: Município limpa valas de drenagem</a></h4>
-                                    <span>02/11/2021</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="post-pic">
-                                    <img src="{{url("assets/images/blog/albufeira.jpg")}}" alt>
-                                </div>
-                                <div class="details">
-                                    <h4><a href="#">Albufeira de Chipembe incrementa a agricultura</a></h4>
-                                    <span>02/11/2021</span>
-                                </div>
-                            </li>
+                            @forelse($blogsLateral as $blogLa)
+                                <li>
+                                    <div class="post-pic">
+                                        <img src="{{url("storage/$blogLa->foto")}}" alt>
+                                    </div>
+                                    <div class="details">
+                                        <h4><a href="{{ url("blogDetails/$blogLa->id") }}">{{ $blogLa->titulo }}</a></h4>
+                                        <span>{{ $blogLa->updated_at }}</span>
+                                    </div>
+                                </li>
+                            @empty
+                                <h4 style="color: #00000075;">Ops nao dispomos de nenhuma noticias em destaque.</h4>
+                            @endforelse
                         </ul>
                     </div>
                 </div>                    

@@ -3,82 +3,67 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function __construct(){
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        
+    }
+
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(User $user)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(User $user)
     {
-        //
+        /*$user = DB::table('users')
+            ->orderBy('id', 'desc')
+            ->get();*/
+
+        /*$user = ["id" => 25, "name" => "DennyLson", "apelido" => "Sebastian", "email" => "admin@admin.com", "biografia" => "Esta e a minha Biografia", "nascimento" => "1998-11-23", "telefone" => "845255563"];*/
+        return view("user.perfil", compact("user"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, User $user)
     {
-        //
+        $formUpdate = $request->all();
+        $update = $user->update($formUpdate);
+        if ($update) {
+            return redirect()->back()->withErrors([
+                'Perfil atualizado com Sucesso!'
+            ]);
+        }else{
+            return redirect()->back()->withErrors([
+                "Falha na atualizacao do perfil"
+            ]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(User $user)
     {
         //

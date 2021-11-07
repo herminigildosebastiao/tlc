@@ -25,18 +25,17 @@
             <div class="row">
                 <div class="col col-md-7">
                     <div class="project-single-img">
-                        <img src="{{url("assets//images/blog/albufeira.jpg")}}" alt>
+                        <img src="{{ url("storage") }}/{{ $galeria[0]->foto }}" alt="{{ $galeria[0]->titulo }}" title="{{ $galeria[0]->titulo }}" class="img img-responsive">
                     </div>
                 </div>
                 <div class="col col-md-5">
                     <div class="project-single-details" style="text-align: justify;">
-                        <h3>Albufeira de Chipembe incrementa a agricultura com id = {{$id}}</h3>
-                        <p>Dut perspiciatis unde omnis iste natus error sit voluptatems accusantium doloremqu laudantiums ut, totams se aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae duis autems vell eums iriure dolors in hendrerit saep.</p>
-                        <p>Eveniet in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at seds eros sed et accumsan et iusto odio dignissim. Temporibus autem quibusdam et aut officiis.</p>
+                        <h3>{{ $galeria[0]->titulo }}</h3>
+                        <p>{{ $galeria[0]->descricao }}</p>
                         <ul class="project-info">
-                            <li><i class="fa fa-tag"></i> <span>Categoria:</span> Energia</li>
-                            <li><i class="fa fa-user"></i> <span>Local:</span> Cabo Delgado</li>
-                            <li><i class="fa fa-calendar"></i> <span>Data:</span> 24/11/2021</li>
+                            <li><i class="fa fa-tag"></i> <span>Categoria:</span> {{ $galeria[0]->categorias }}</li>
+                            <li><i class="fa fa-user"></i> <span>Local:</span> {{ $galeria[0]->local }}</li>
+                            <li><i class="fa fa-calendar"></i> <span>Data:</span> {{ $galeria[0]->created_at }}</li>
                         </ul>
                     </div>
                 </div>

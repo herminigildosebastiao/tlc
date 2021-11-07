@@ -6,15 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use CoffeeCode\Cropper\Cropper;
 
 class BlogController extends Controller
 {
-    /*private $blog;
-
-    public function __construct(Blog $blog){
-        $this->blog = $blog;
-    }*/
-
+    
     public function index()
     {
         $user = ["name" => "DennyLson", "apelido" => "Sebastian", "email" => "admin@admin.com"];
@@ -36,13 +32,21 @@ class BlogController extends Controller
     {
         $formBlog = $request->all();
 
-        /*if ($request->file('foto')->isValid()) {
+        if ($request->file('foto')->isValid()) {
 
-            $foto = $request->file('foto')->store('noticia');
-            $formNoticia['foto'] = $foto;
-        }*/
+            $picture = $request->file('foto')->store('blog');
+            $cropper = new Cropper("storage/blog");
+
+            $img = $cropper->make("storage/{$picture}", "696", "464");
+            unlink("storage/{$picture}");
+            $picture = ltrim($img, "storage/");
+
+            $formBlog['foto'] = $picture;
+        }
 
         $blog = $blog->create($formBlog);
+
+
         if ($blog) {
             return redirect()->route('blog.index')->withErrors(['Noticia Cadastrada com sucesso!']);
         }
@@ -68,12 +72,17 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $newBlog = $request->all();
-        
         if (isset($newBlog['foto'])) {
             //"Recebi tambm junto a uma foto"
             if ($request->file('foto')->isValid()) {
 
                 $picture = $request->file('foto')->store('blog');
+
+                $cropper = new Cropper("storage/blog");
+
+                $img = $cropper->make("storage/{$picture}", "696", "464");
+                unlink("storage/{$picture}");
+                $picture = ltrim($img, "storage/");
 
                 if ($newBlog['foto'] = $picture) {
 

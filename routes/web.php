@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\dashboard\PortfolioController;
 use App\Http\Controllers\dashboard\BlogController;
 use App\Http\Controllers\dashboard\DashboardController;
@@ -59,23 +60,24 @@ Route::get("payment", [ShopController::class, 'payment'])->name("payment");
 
 Route::group(['prefix' => '/dashboard/'], function(){
 
-    Route::get('/', [DashboardController::class, 'index'])->name("dashboard");
-    Route::get('home', [DashboardController::class, 'index'])->name("dashboard");
-    //Route::get('blog', [DashboardController::class, 'blog'])->name("dashboard/blog");
-    //Route::get('portfolio', [DashboardController::class, 'portfolio'])->name("dashboard/portfolio");
-    /*Route::get('login', [PainelController::class, 'formLogin']);
-    Route::get('logout', [PainelController::class, 'logout']);
-    Route::post('login/do', [PainelController::class, 'login']);
-    Route::get('dashboard', [PainelController::class, 'dashboard']);
-    Route::get('noticias', [PainelController::class, 'noticias']);
-    Route::get('galeria', [PainelController::class, 'galeria']);
-    Route::get('newsletter', [PainelController::class, 'email']);
-    Route::get('perfil', [PainelController::class, 'perfil']);*/
-
-    /*Route::resource('user', UserController::class);
-    Route::resource('password', SenhaController::class);*/
+    Route::get('/', [DashboardController::class, 'index'])->name("dashboard")->middleware("auth");
+    Route::get('home', [DashboardController::class, 'index'])->name("dashboard")->middleware("auth");
     Route::resource('portfolio', PortfolioController::class);
-    Route::resource('blog', BlogController::class);
-    //Route::resource('portfolio', GaleriasController::class);
+    Route::resource('blog', BlogController::class)->middleware("auth");
+    Route::resource('user', UserController::class)->middleware("auth");
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Rota para o Login
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+Route::get('login', [DashboardController::class, 'formLogin'])->name("login");
+Route::post('logar', [DashboardController::class, 'logar'])->name("logar");
+Route::get('logout', [DashboardController::class, 'logout'])->name("logout");

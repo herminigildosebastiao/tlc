@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
+use CoffeeCode\Cropper\Cropper;
 
 class PortfolioController extends Controller
 {
@@ -26,9 +27,26 @@ class PortfolioController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(Request $request, Portfolio $portfolio)
     {
-        //
+        $formPortfolio = $request->all();
+        if ($request->file('foto')->isValid()) {
+
+            $picture = $request->file('foto')->store('portfolio');
+            $cropper = new Cropper("storage/portfolio");
+
+            $img = $cropper->make("storage/{$picture}", "696", "464");
+            unlink("storage/{$picture}");
+            $picture = ltrim($img, "storage/");
+
+            $formPortfolio['foto'] = $picture;
+        }
+
+        $portfolio = $portfolio->create($formPortfolio);
+        if ($portfolio) {
+            return redirect()->route('portfolio.index')->withErrors(['Foto cadastrada com sucesso!']);
+        }
+        return redirect()->back()->withInput()->withErrors(['Falha ao postar imagem']);
     }
 
     
@@ -61,9 +79,14 @@ class PortfolioController extends Controller
             //"Recebi tambm junto a uma foto"
             if ($request->file('foto')->isValid()) {
 
-                $picture = $request->file('foto')->store('galeria');
+                $picture = $request->file('foto')->store('portfolio');
 
-                if ($newPortfolio['foto'] = $foto) {
+                $cropper = new Cropper("storage/portfolio");
+
+                $img = $cropper->make("storage/{$picture}", "696", "464");
+                unlink("storage/{$picture}");
+                $picture = ltrim($img, "storage/");
+                if ($newPortfolio['foto'] = $picture) {
 
                     $update = $portfolio->update($newPortfolio);
                     if ($update) {

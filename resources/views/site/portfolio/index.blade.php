@@ -24,39 +24,21 @@
             <div class="row">
                 <div class="col col-xs-12">
                     <div class="projects-grid-view">
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="{{url("assets/images/portifolio/albufeira.jpg")}}" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="{{url("portfolio/portDetails/88")}}"><h3>Albufeira de Chipembe incrementa a agricultura</h3></a>
-                                    <div class="tags">Cabo Delgado</div>
+                        @forelse($galerias as $galeria)
+                            <div class="grid">
+                                <div class="project-img">
+                                    <img src="{{url("storage/$galeria->foto")}}" alt="{{ $galeria->titulo }}" title="{{ $galeria->titulo }}">
+                                </div>
+                                <div class="project-info">
+                                    <div class="inner-info">
+                                        <a href="{{ url("portDetails/$galeria->id") }}"><h4 style="color: #fff;">{{ $galeria->titulo }}</h4></a>
+                                        <div class="tags">{{ $galeria->local }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="{{url("assets/images/portifolio/chuvas.jpg")}}" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>PREPARANDO-SE PARA A ÉPOCA CHUVOSA: Município limpa valas de drenagem</h3></a>
-                                    <div class="tags">Sofala</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="project-img">
-                                <img src="{{url("assets/images/portifolio/estrada.jpg")}}" alt>
-                            </div>
-                            <div class="project-info">
-                                <div class="inner-info">
-                                    <a href="#"><h3>Estrada que liga Macomia e Muidumbe reabre dentro de dias</h3></a>
-                                    <div class="tags">Cabo Delgado</div>
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                            <h3 style="color: #fff;">Opss nenhuma imagem disponivel!!!</h3>
+                        @endforelse
                     </div>
                 </div>
             </div>

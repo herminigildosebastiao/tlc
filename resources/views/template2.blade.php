@@ -97,9 +97,9 @@
              </div>
             </a>
           </li>
-          <li class="dropdown-item"><a href="{{url('painel/perfil')}}"><i class="icon-user mr-2"></i> Perfil</a></li>
+          <li class="dropdown-item"><a href="{{url('dashboard/user/1/edit')}}"><i class="icon-user mr-2"></i> Perfil</a></li>
           <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><a href="{{url('painel/logout')}}"><i class="icon-power mr-2"></i> Terminar sessao</a></li>
+          <li class="dropdown-item"><a href="{{ route('logout') }}"><i class="icon-power mr-2"></i> Terminar sessao</a></li>
         </ul>
       </li>
     </ul>
