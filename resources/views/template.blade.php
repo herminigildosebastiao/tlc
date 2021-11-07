@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="top-cart-action clearfix">
                                     <span class="fleft top-checkout-price">MZN 18 500.00</span>
-                                    <a href="{{route("cart")}}" class="theme-btn">Ver carinho de compra</a>
+                                    <a href="{{--route("cart")--}}" class="theme-btn">Ver carinho de compra</a>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                                 <h3 class="my-2">Navegação</h3>
                                 <ul>
                                     <li><a href="{{route("home")}}">Pagina inicial</a></li>
-                                    <li><a href="{{route("shop")}}">Loja</a></li>
+                                    <li><a href="{{--route("shop")--}}">Loja</a></li>
                                     <li><a href="{{route("about")}}">Sobre</a></li>
                                     <li><a href="{{route("portfolio")}}">Portifolio</a></li>
                                     <li><a href="{{route("blog")}}">Blog</a></li>

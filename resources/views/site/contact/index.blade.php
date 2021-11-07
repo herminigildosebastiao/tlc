@@ -16,7 +16,7 @@
                 <div class="col col-xs-12">
                     <h2>Contato</h2>
                     <ol class="breadcrumb">
-                        <li><a href="index-2.html">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li>Contato</li>
                     </ol>
                 </div>
